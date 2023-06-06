@@ -14,7 +14,7 @@ export const ScreenOne = styled.View`
 export const Container = styled.View`
     gap: 60px;
     position: absolute;
-    top: 50px;
+
     display: flex;
     align-items: center;
     justify-content: center;
