@@ -1,6 +1,5 @@
-import { View, Text, TextInput, Image } from 'react-native'
+import {  Text, TextInput, Image } from 'react-native'
 import { Buttonlogin, Container, Contentbefore, Modalform } from './style'
-import { ButtonNext } from '../initialPage/style'
 
 export default function LoginScreen({ }) {
     return (
@@ -22,8 +21,11 @@ export default function LoginScreen({ }) {
                     <Image source={require("../../assets/seta-lado.png")}  style={{position: "absolute", right: 20}}/>
                  </Buttonlogin>
                 <Contentbefore>
-
-
+                    <Text
+                    style={{
+                        marginLeft: 20,
+                        marginTop: 10,
+                        color: "gray"}}>By continuing you may receive a Gmail for verification. Message fees may apply</Text>
                  </Contentbefore>
             </Modalform>
         </Container>

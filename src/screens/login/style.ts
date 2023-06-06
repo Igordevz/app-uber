@@ -2,16 +2,18 @@ import styled from "styled-components/native";
 
 
 export const Container = styled.View`
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 100%;
-    width: 100%;
     background: white;
-    position: relative;
 `
 
 
 export const Modalform = styled.View`
     display: flex;
+    margin-bottom: 50px;
+    width: 100%;
     justify-content: center;
     margin-top: 50px;
 `
