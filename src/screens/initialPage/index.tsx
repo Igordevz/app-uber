@@ -1,8 +1,17 @@
 import { View, Text, Image } from 'react-native'
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { ButtonNext, Container, ScreenOne } from './style'
+import { AuthContext } from '../../context/ContextApi'
 
 export default function InitialPage({navigation}:any) {
+ 
+  const { user }:any = useContext(AuthContext)
+  
+  if(user?.Token){
+    navigation.navigate("home")
+  }
+
+  
   return (
     <>
     <ScreenOne>

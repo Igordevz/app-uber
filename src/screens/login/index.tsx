@@ -2,40 +2,36 @@
 import { Text, TextInput, Image, Alert } from 'react-native';
 import { Buttonlogin, Container, Contentbefore, Modalform } from './style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/ContextApi';
-import axios from 'axios';
 import { Api } from '../../services/Api';
 
 export default function LoginScreen() {
-  // name, email, password, confirmPassword
-  // const { user }:any = useContext(AuthContext)
-  // console.log(user);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  
+  // console.log(user);
 
-  async function Logar(){
+  async function Logar() {
 
-    if(email?.length < 1){
+    if (email?.length < 1) {
       Alert.alert('ops...', 'Preencha O Campo Email')
-    } 
-    if(password?.length < 1){
+    }
+    if (password?.length < 1) {
       Alert.alert('ops...', 'Preencha O Campo Senha ')
 
     }
     await Api.post("/auth/login", {
-       email: email,
-       password: password
+      email: email,
+      password: password
     })
-    .then( async (data)  => {
-      await AsyncStorage.setItem("user", JSON.stringify(data?.data));
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+      .then(async (data) => {
+        await AsyncStorage.setItem("user", JSON.stringify(data?.data));
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   return (
@@ -58,9 +54,9 @@ export default function LoginScreen() {
             height: 45,
             paddingLeft: 20,
           }}
-          onChange={(e:any) => setEmail(e.nativeEvent.text)}
+          onChange={(e: any) => setEmail(e.nativeEvent.text)}
         />
-         <Text style={{ marginLeft: 20, fontWeight: '600' }}>
+        <Text style={{ marginLeft: 20, fontWeight: '600' }}>
           Enter Your Password
         </Text>
         <TextInput
