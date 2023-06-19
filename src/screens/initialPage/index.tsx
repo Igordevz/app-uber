@@ -7,10 +7,12 @@ export default function InitialPage({navigation}:any) {
  
   const { user }:any = useContext(AuthContext)
   
-  if(user?.Token){
-    navigation.navigate("home");
-  }
-  
+  setTimeout(() => {
+    if(user?.Token){
+      navigation.navigate("home")
+    }
+  }, 0);
+ 
   return (
     <>
       <ScreenOne>

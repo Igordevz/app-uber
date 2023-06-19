@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/ContextApi';
 import { Api } from '../../services/Api';
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}: any) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,23 +14,19 @@ export default function LoginScreen() {
   // console.log(user);
 
   async function Logar() {
-
-    if (email?.length < 1) {
-      Alert.alert('ops...', 'Preencha O Campo Email')
-    }
-    if (password?.length < 1) {
-      Alert.alert('ops...', 'Preencha O Campo Senha ')
-
-    }
+ 
     await Api.post("/auth/login", {
       email: email,
       password: password
     })
       .then(async (data) => {
-        await AsyncStorage.setItem("user", JSON.stringify(data?.data));
+        await AsyncStorage.setItem("user", JSON.stringify(data.data))
+        if(data.data.Token){
+          navigation.navigate("home")
+        }
       })
       .catch((err) => {
-        console.log(err);
+        Alert.alert('Falha Ao Fazer Login', 'Verifique Seu Email E Senha')
       })
   }
 
@@ -56,7 +52,7 @@ export default function LoginScreen() {
           }}
           onChange={(e: any) => setEmail(e.nativeEvent.text)}
         />
-        <Text style={{ marginLeft: 20, fontWeight: '600' }}>
+        <Text style={{ marginLeft: 20, fontWeight: '600', marginTop: 20 }}>
           Enter Your Password
         </Text>
         <TextInput
